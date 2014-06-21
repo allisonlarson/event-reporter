@@ -20,6 +20,7 @@ class EntryTest<Minitest::Test
   end
 
   def test_zip_code_format
+    skip
     entry = Entry.new
     zip_code1 = '0023'
     zip_code2 = '927058'
@@ -33,13 +34,16 @@ class EntryTest<Minitest::Test
   end
 
   def test_phone_number_format
+    skip
     entry = Entry.new
-    phone_number1 = '6154385000'
-    # phone_number2 = '9.82E+00' Ask about this
-    phone_number2 = '206-226-3000'
-    phone_number3 = '510 282 4000'
-    phone_number4 = '214.794.2000'
-    phone_number5 = '(717) 754-3000'
+    data = {
+      phone_number1 = '6154385000'
+      # phone_number2 = '9.82E+00' Ask about this
+      phone_number2 = '206-226-3000'
+      phone_number3 = '510 282 4000'
+      phone_number4 = '214.794.2000'
+      phone_number5 = '(717) 754-3000'
+    }
 
     assert_equal '(615) 438-5000', entry.clean_phonenumber(phone_number1)
     assert_equal '(206) 226-3000', entry.clean_phonenumber(phone_number2)
@@ -49,13 +53,14 @@ class EntryTest<Minitest::Test
   end
 
   def test_clean_incoming_data
-    entry = Entry.new
+
     data = {
       zipcode: "030",
       phonenumber: "(555) 756.0000"
     }
+    entry = Entry.new(data)
     # binding.pry
-    assert_equal "00030", entry.clean_data(data[:zipcode])
-    # assert_equal '(555) 756-0000', entry.clean_data(data).phonenumber
+    assert_equal "00030", entry.zipcode
+    assert_equal '(555) 756-0000', entry.phonenumber
   end
 end
