@@ -47,15 +47,18 @@ class EntryTest<Minitest::Test
     assert_equal '(214) 794-2000', entry.clean_phonenumber(phone_number4)
     assert_equal '(717) 754-3000', entry.clean_phonenumber(phone_number5)
   end
-
+  
   def test_clean_incoming_data
+
     entry = Entry.new
     data = {
       zipcode: "030",
       phonenumber: "(555) 756.0000"
     }
     # binding.pry
-    assert_equal "00030", entry.clean_data(data[:zipcode])
+    assert_equal "00030", entry.clean_data(data)[:zipcode]
+    binding.pry
+
     # assert_equal '(555) 756-0000', entry.clean_data(data).phonenumber
   end
 end
