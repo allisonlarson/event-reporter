@@ -2,11 +2,12 @@ require 'pry'
 
 class Entry
 
-  attr_reader :zipcode, :phonenumber
+  attr_reader :zipcode, :homephone, :name
 
   def initialize(data)
     @zipcode = clean_zipcode(data[:zipcode])
-    @phonenumber = clean_phonenumber(data[:phonenumber])
+    @homephone = clean_phonenumber(data[:homephone])
+    @name = data[:name]
   end
 
   def clean_zipcode(zip_code)
@@ -20,6 +21,5 @@ class Entry
     subscriber = digits[-4..-1]
     "(%s) %s-%s" % [area_code, exchange, subscriber]
   end
-
 
 end
