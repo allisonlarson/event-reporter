@@ -20,4 +20,8 @@ class Container
   def find(attribute, criteria)
     entries.select { |entry| entry.send(attribute) == criteria }
   end
+
+  def empty?
+    entries.empty?
+  end
 end

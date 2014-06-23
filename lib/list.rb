@@ -1,10 +1,10 @@
 require 'pry'
 class List
   attr_reader :queue
+  attr_accessor :container
 
-  def initialize(container=Container.load('./test_attendees.csv'))
+  def initialize
     @queue = []
-    @container = container
   end
 
   def add(entry)
@@ -17,7 +17,7 @@ class List
 
   def find(attribute, criteria)
     @queue = []
-    entry = @container.find(attribute, criteria)
+    entry = container.find(attribute, criteria)
     append(entry)
   end
 

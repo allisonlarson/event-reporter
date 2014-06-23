@@ -6,27 +6,23 @@ require './lib/entry'
 require 'pry'
 
 class ListTest< Minitest::Test
+  attr_reader :list
 
-  def test_it_holds_entrys_and_counts_them
-    list = List.new
-    entry1 = 'Jim'
-    entry2 = 'Phil'
-    list.add(entry1)
-    list.add(entry2)
-    assert_equal 2, list.length
+  def setup
+    @list = List.new
+    @list.container = Container.load('./test_attendees.csv')
   end
 
   def test_it_appends_entries_to_the_queue
-    list = List.new
     entries_1 = 'Jim'
     entries_2 = ['Phil', 'Mary']
+    starter_length = list.length
     list.add(entries_1)
     list.append(entries_2)
-    assert_equal 3, list.length
+    assert_equal 3, list.length - starter_length
   end
 
   def test_list_clears_when_new_search_is_initiated
-    list = List.new
     list.find(:first_name, "Allison")
     assert_equal 1, list.length
     list.find(:first_name, "Shannon")
@@ -34,7 +30,6 @@ class ListTest< Minitest::Test
   end
 
   def test_it_can_find_entry_by_attribute
-    list = List.new
     list.find(:first_name, "Allison")
     list.each do |entry|
       assert_equal "Allison", entry.first_name
@@ -50,7 +45,6 @@ class ListTest< Minitest::Test
   end
 
   def test_it_can_clear_entries
-    list = List.new
     list.find(:first_name, "Allison")
     assert_not_empty list
     list.clear
