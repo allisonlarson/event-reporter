@@ -18,6 +18,8 @@ class ContainerTest<Minitest::Test
     container = Container.load('./test_attendees.csv')
     entries = container.find(:first_name, 'Shannon')
     assert_equal 2 , entries.length
-    assert_equal true, entries.is_a?(Array)
+    entries.each do |entry|
+      assert_equal "Shannon", entry.first_name
+    end
   end
 end
