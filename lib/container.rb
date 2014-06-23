@@ -1,3 +1,4 @@
+require 'pry'
 require 'csv'
 
 
@@ -11,6 +12,7 @@ class Container
   end
 
   attr_reader :entries
+
   def initialize(entries)
     @entries = entries
   end

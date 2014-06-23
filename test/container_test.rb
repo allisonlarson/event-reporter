@@ -4,27 +4,20 @@ require 'csv'
 require './lib/container'
 require './lib/entry'
 require 'pry'
+
 class ContainerTest<Minitest::Test
 
-
-  def entries
-    [
-      {name: 'Tom Smith', homephone: '111-111-1111', zipcode: '21111'},
-      {name: 'Alice Jones', homephone: '123-456-7890', zipcode: '1111'},
-      {name: 'Zachary Evans', homephone: '(098) 765 4321', zipcode: '023'}
-    ].map {|row| Entry.new(row)}
-  end
-
-  def repository
-    @repository ||= Container.new(entries)
-  end
-
   def test_it_finds_by_attribute
-    entries = repository.find(:zipcode, '21111')
+    container = Container.load('./test_attendees.csv')
+    entries = container.find(:zipcode, '90210')
     assert_equal 1, entries.length
-    e1, e2 = entries
-    assert_equal 'Tom Smith', e1.name
-    assert_equal '(111) 111-1111', e1.homephone
+    assert_equal 'Aya', entries[0].first_name
   end
 
+  def test_finds_multiple_entries
+    container = Container.load('./test_attendees.csv')
+    entries = container.find(:first_name, 'Shannon')
+    assert_equal 2 , entries.length
+    assert_equal true, entries.is_a?(Array)
+  end
 end
