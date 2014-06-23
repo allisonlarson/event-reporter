@@ -33,16 +33,27 @@ class ListTest< Minitest::Test
     assert_equal 2, list.length
   end
 
-  # def test_it_can_find_entry_by_attribute
-  #   list      = List.new
-  #   list.find(:first_name, "Allison")
-  #   assert_equal "Allison", list.queue[0][0].first_name
-  # end
-  #
-  # def test_it_can_clear_entry
-  #   list  = List.new
-  #   list.find(:first_name, "Allison")
-  #   list.clear
-  #   assert true, list.queue.empty?
-  # end
+  def test_it_can_find_entry_by_attribute
+    list = List.new
+    list.find(:first_name, "Allison")
+    list.each do |entry|
+      assert_equal "Allison", entry.first_name
+    end
+  end
+
+  def assert_empty(list)
+    assert list.empty?, "Expected the list to be empty but instead it is: #{list.inspect}."
+  end
+
+  def assert_not_empty(list)
+    refute list.empty?, "Expected the list to have entries but it is empty."
+  end
+
+  def test_it_can_clear_entries
+    list = List.new
+    list.find(:first_name, "Allison")
+    assert_not_empty list
+    list.clear
+    assert_empty list
+  end
 end

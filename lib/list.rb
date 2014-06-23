@@ -28,4 +28,12 @@ class List
   def length
     queue.length
   end
+
+  def each(&block)
+    queue.each(&block)
+  end
+
+  def empty?
+    queue.empty?
+  end
 end
