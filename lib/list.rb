@@ -11,10 +11,14 @@ class List
     @queue << entry
   end
 
+  def append(entries)
+    @queue += entries
+  end
+
   def find(attribute, criteria)
     @queue = []
     entry = @container.find(attribute, criteria)
-    add(entry)
+    append(entry)
   end
 
   def clear
