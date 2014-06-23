@@ -19,5 +19,9 @@ class List
 
   def clear
     @queue = []
-    end
+  end
+
+  def length
+    queue.length
+  end
 end

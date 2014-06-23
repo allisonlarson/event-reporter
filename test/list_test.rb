@@ -7,17 +7,13 @@ require 'pry'
 
 class ListTest< Minitest::Test
 
-  def test_it_exsists
-    list = List.new
-  end
-
   def test_it_holds_entrys_and_counts_them
     list = List.new
     entry1 = 'Jim'
     entry2 = 'Phil'
     list.add(entry1)
     list.add(entry2)
-    assert_equal 2, list.queue.length
+    assert_equal 2, list.length
   end
 
   def test_queue_clears_when_new_search_is_initiated
