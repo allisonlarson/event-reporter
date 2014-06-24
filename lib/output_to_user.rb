@@ -38,4 +38,11 @@ class OutputToUser
   def self.find
     "Your search has been placed in queue."
   end
+
+  def self.help
+    puts title = "Help Menu".center(100)
+  end
 end
+
+
+p OutputToUser.help
