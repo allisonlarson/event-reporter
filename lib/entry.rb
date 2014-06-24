@@ -22,7 +22,7 @@ class Entry
   end
 
   def clean_phonenumber(phone_number)
-    digits = phone_number.delete("-.() ")
+    digits = phone_number.scan(/\d/).join
     area_code  = digits[0..2]
     exchange   = digits[3..5]
     subscriber = digits[-4..-1]
