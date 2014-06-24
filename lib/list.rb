@@ -1,6 +1,6 @@
 require 'pry'
 class List
-  attr_reader :queue
+  attr_accessor :queue
 
   def initialize
     @queue = Array.new
