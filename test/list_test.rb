@@ -53,4 +53,5 @@ class ListTest< Minitest::Test
     assert_not_empty list
     assert_equal 4, list.length
   end
+
 end

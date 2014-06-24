@@ -1,5 +1,6 @@
 require_relative 'list'
 require_relative 'container'
+require 'pry'
 
 class CLI
   attr_reader :container, :list
@@ -21,6 +22,10 @@ class CLI
     list.each(&block)
   end
 
+  def clear
+    list.clear
+  end
+
   def find_by_first_name(name)
     list.clear
     entries = container.find_by_first_name(name)
@@ -31,6 +36,7 @@ class CLI
     list.clear
     entries = container.find_by_last_name(name)
     list.append(entries)
+    binding.pry
   end
 
   def find_by_state(state)
@@ -50,7 +56,7 @@ class CLI
     entries = container.find_by_city(city)
     list.append(entries)
   end
-  
+
 
 
 end
