@@ -22,10 +22,18 @@ class Entry
   end
 
   def clean_phonenumber(phone_number)
-    digits = phone_number.delete("-.() ")
+    digits = phone_number.scan(/\d/).join
     area_code  = digits[0..2]
     exchange   = digits[3..5]
     subscriber = digits[-4..-1]
     "(%s) %s-%s" % [area_code, exchange, subscriber]
+  end
+
+  def name
+    "#{first_name} #{last_name}"
+  end
+
+  def address
+    "#{street}, #{city}, #{state} #{zipcode}"
   end
 end

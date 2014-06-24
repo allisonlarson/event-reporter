@@ -5,23 +5,48 @@ require 'pry'
 
 class EntryTest<Minitest::Test
 
-  def datax
-    {first_name: "Allison", last_name: "Larson", zipcode: "89009", homephone: "(454) 567-7890"}
-    # {first_Name: "Tim", last_Name: "Proctor", zipcode: "67897", phonenumber: "(123) 456-8908"},
-    # {first_Name: "John", last_Name: "Smith", zipcode: "12345", phonenumber: "(345) 456-7890"}
+  def data
+    {
+    first_name: "Allison",
+    last_name: "Larson",
+    email_address: 'allie@gmail.com',
+    street: '123 Main',
+    city: 'Denver',
+    state: 'CO',
+    zipcode: "89009",
+    homephone: "(454) 567-7890"}
   end
 
-  def test_clean_incoming_data
+  def test_it_cleans_zipcodes
 
-    info = {
-      zipcode: "030",
-      homephone: "(555) 756.0000"
-    }
+    zipcode_short = "030"
+    zipcode_long = "5544321"
+    zipcode_correct = "80201"
 
-    entry = Entry.new(info)
+    entry = Entry.new(data)
 
-    assert_equal "00030", entry.zipcode
-    assert_equal '(555) 756-0000', entry.homephone
+    assert_equal "00030", entry.clean_zipcode(zipcode_short)
+    assert_equal "55443", entry.clean_zipcode(zipcode_long)
+    assert_equal "80201", entry.clean_zipcode(zipcode_correct)
+  end
+
+  def test_it_cleans_phonenumbers
+
+    phone_number_solid = "0000000000"
+    phone_number_dashes ="111-111-1111"
+    phone_number_parenthesis = "(222)(222)2222"
+    phone_number_spaces = "333 333 3333"
+    phone_number_periods = "444.444.4444"
+    phone_number_correct = "(555) 555-5555"
+
+    entry = Entry.new(data)
+
+    assert_equal "(000) 000-0000", entry.clean_phonenumber(phone_number_solid)
+    assert_equal "(111) 111-1111", entry.clean_phonenumber(phone_number_dashes)
+    assert_equal "(222) 222-2222", entry.clean_phonenumber(phone_number_parenthesis)
+    assert_equal "(333) 333-3333", entry.clean_phonenumber(phone_number_spaces)
+    assert_equal "(444) 444-4444", entry.clean_phonenumber(phone_number_periods)
+    assert_equal "(555) 555-5555", entry.clean_phonenumber(phone_number_correct)
   end
 
   def test_can_retrieve_first_Name_from_attendees
@@ -30,5 +55,29 @@ class EntryTest<Minitest::Test
     assert_equal "Allison", entry.first_name
   end
 
+  def test_can_retrieve_information_from_attendee
+    entry = Entry.new(data)
 
+    assert_equal "Allison", entry.first_name
+    assert_equal "Denver", entry.city
+    assert_equal "89009", entry.zipcode
+  end
+
+  def test_full_name
+    entry = Entry.new(data)
+
+    assert_equal "Allison Larson", entry.name
+  end
+
+  def test_full_address
+    entry = Entry.new(data)
+
+    assert_equal "123 Main, Denver, CO 89009", entry.address
+  end
+
+  def test_entry_missing_information
+    entry = Entry.new(data)
+
+    assert_equal nil, entry.regdate
+  end
 end

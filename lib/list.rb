@@ -1,10 +1,17 @@
 require 'pry'
 class List
   attr_reader :queue
-  attr_accessor :container
 
   def initialize
-    @queue = []
+    @queue = Array.new
+  end
+
+  def adds_entrys(entry)
+    if entry.length < 0
+      add(entry)
+    else
+      append(entry)
+    end
   end
 
   def add(entry)
@@ -13,12 +20,6 @@ class List
 
   def append(entries)
     @queue += entries
-  end
-
-  def find(attribute, criteria)
-    @queue = []
-    entry = container.find(attribute, criteria)
-    append(entry)
   end
 
   def clear
