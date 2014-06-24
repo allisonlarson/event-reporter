@@ -50,6 +50,7 @@ class CLI
     entries = container.find_by_city(city)
     list.append(entries)
   end
+  
 
 
 end
