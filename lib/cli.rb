@@ -5,61 +5,62 @@ require_relative "output_to_user"
 
 
 class CLI
-  attr_reader :container, :list, :command, :parameters
+  attr_reader :container, :list, :command
 
   def initialize
     @container  = []
     @list       = List.new
     @command    = ''
-    @parameters = ''
   end
 
-  def process_input
-    input.downcase.split
+  def process_input(input)
+    input.split
+  end
+
+  def run
+    OutputToUser.welcome
+    OutputToUser.prompt
+    input = gets.strip
+    until input == 'quit'
+      @command = process_input(input)
+      assigns_instructions
+      input = gets.strip
+    end
   end
 
   def assigns_instructions
-    instruction = process_input[0]
-    until instruction == 'quit'
+    instruction = command[0]
       case instruction
-        when 'load' then loads
-        when 'find' then find
-        when 'queue' then queue
-        when 'help' then help
+      when 'load'  then load_parse
+      when 'find'  then find
+      when 'queue' then queue
+      when 'help'  then help
       end
-    end
   end
 
-  # def run
-  #   OutputToUser.welcome
-  #   command = ''
-  #
-  #   until command = 'quit'
-  #     OutputToUser.prompt
-  #   end
-  #
-  # end
-
-
   def find
+    attribute = command[2]
+    criteria = command[3]
     clear
     case attribute
-      when 'first_name' then {entry = container.find_by_first_name(criteria)}
-      when 'last_name'  then {entry = container.find_by_last_name(criteria)}
-      when 'state'      then {entry = container.find_by_last_name(criteria)}
-      when 'zipcode'    then {entry = find_by_zipcode(criteria)}
-      when 'city'       then {entry = container.find_by_city(criteria)}
+    when 'first_name' then add(container.find_by_first_name(criteria))
+    when 'last_name'  then add(container.find_by_last_name(criteria))
+    when 'state'      then add(container.find_by_last_name(criteria))
+    when 'zipcode'    then add(container.find_by_zipcode(criteria))
+    when 'city'       then add(container.find_by_city(criteria))
     end
-    add(entry)
   end
 
   def queue
-    case command
-      when 'print by' then print_by(attribute)
-      when 'count'    then length
-      when 'clear'    then clear
-      when 'print'    then prints
-      end
+    instruct = command[1]
+    attribute = command[3]
+    if instruct == 'by'
+      print_by(attribute)
+    end
+    case instruct
+    when 'count'    then length
+    when 'clear'    then clear
+    when 'print'    then prints
     end
   end
 
@@ -72,12 +73,22 @@ class CLI
     list.prints
   end
 
-  def load(filename)
-      @container = Container.load(filename)
+  def load_parse
+    if command.length >= 1
+      file = command[1]
+      load(file)
+    else
+      load
+    end
+  end
+
+  def load(filename = './test_attendees.csv')
+    @filename = filename
+    @container = Container.load(@filename)
   end
 
   def length
-    list.length
+    puts list.length
   end
 
   def each(&block)
@@ -89,7 +100,11 @@ class CLI
   end
 
   def add(entry)
-    list.add_entrys(entrys)
+    list.adds_entrys(entry)
+  end
+
+  def help
+    puts "something!"
   end
 
   # def find_by_first_name(name)
@@ -124,3 +139,5 @@ class CLI
   # end
 
 end
+t = CLI.new
+t.run

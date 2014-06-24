@@ -16,6 +16,7 @@ class CLITest < Minitest::Test
   end
 
   def test_it_finds_by_first_name
+    skip
     cli.load('./test_attendees.csv')
     cli.find_by_first_name("Allison")
     assert_equal 1 , cli.length
@@ -25,6 +26,7 @@ class CLITest < Minitest::Test
   end
 
   def test_it_finds_by_last_name
+    skip
     cli.load('./test_attendees.csv')
     cli.find_by_last_name("Nguyen")
     assert_equal 1 , cli.length
@@ -34,6 +36,7 @@ class CLITest < Minitest::Test
   end
 
   def test_it_finds_by_state
+    skip
     cli.load('./test_attendees.csv')
     cli.find_by_state("YK")
     assert_equal 1 , cli.length
@@ -43,6 +46,7 @@ class CLITest < Minitest::Test
   end
 
   def test_it_finds_by_zipcode
+    skip
     cli.load('./test_attendees.csv')
     cli.find_by_zipcode("14841")
     assert_equal 1 , cli.length
@@ -52,6 +56,7 @@ class CLITest < Minitest::Test
   end
 
   def test_it_finds_by_city
+    skip
     cli.load('./test_attendees.csv')
     cli.find_by_city("Lyndeborough")
     assert_equal 1 , cli.length
@@ -61,6 +66,7 @@ class CLITest < Minitest::Test
   end
 
   def test_it_finds_multiple_records_by_first_name
+    skip
     cli.load('./test_attendees.csv')
     shannons = cli.find_by_first_name('Shannon')
     assert_equal 2, shannons.count
@@ -68,7 +74,13 @@ class CLITest < Minitest::Test
       assert_equal "Shannon", shannon.first_name
     end
   end
-  
+
+  def test_it_processes_input
+    input = 'a b c'
+    assert_equal ['a','b', 'c'], cli.process_input(input)
+  end
+
+
 end
 
 # load event_attendees.csv
