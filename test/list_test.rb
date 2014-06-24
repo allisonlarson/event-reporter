@@ -53,4 +53,27 @@ class ListTest< Minitest::Test
     assert_not_empty list
     assert_equal 4, list.length
   end
+
+  def test_it_can_sort_by_attribute
+
+    e1 = {zipcode: "02000", last_name: "Larson"}
+    e2 = {zipcode: "00000", last_name: "Hatch"}
+    e3 = {zipcode: "12345", last_name: "Riker"}
+
+    list.adds_entrys([e1, e2, e3])
+    expectation = [e2, e1, e3]
+    assert_equal expectation, list.filter_by(:zipcode)
+  end
+
+  def test_it_will_sort_by_first_name_after_last_name
+    skip
+    e1 = {last_name: "Jones", first_name: "Becky"}
+    e2 = {last_name: "Alpha", first_name: "Tiny"}
+    e3 = {last_name: "Jones", first_name: "Aida"}
+
+    list.adds_entrys([e1, e2, e3])
+    assert_equal [e2, e3, e1], list.filter_by(:last_name)
+  end
+
+
 end
