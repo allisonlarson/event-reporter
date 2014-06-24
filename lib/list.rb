@@ -38,7 +38,7 @@ class List
     queue.empty?
   end
 
-  def print_header
+  def prints
     header = "\tLAST NAME\tFIRST NAME\tEMAIL\tZIP\tCITY\tSTATE\tADDRESS\tPHONE\n\n"
     print header.center(50)
     info = @queue.eac  h do |entry|

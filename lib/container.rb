@@ -4,7 +4,7 @@ require_relative 'entry'
 
 
 class Container
-  def self.load(file)
+  def self.load(file = './event_attendees.csv')
     data = CSV.open(file, headers: true, header_converters: :symbol)
     rows = data.map do |row|
       Entry.new(row)
