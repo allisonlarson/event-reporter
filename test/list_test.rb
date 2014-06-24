@@ -75,5 +75,4 @@ class ListTest< Minitest::Test
     assert_equal [e2, e3, e1], list.filter_by(:last_name)
   end
 
-
 end

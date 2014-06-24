@@ -68,6 +68,7 @@ class CLITest < Minitest::Test
       assert_equal "Shannon", shannon.first_name
     end
   end
+  
 end
 
 # load event_attendees.csv
