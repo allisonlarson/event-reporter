@@ -28,4 +28,12 @@ class Entry
     subscriber = digits[-4..-1]
     "(%s) %s-%s" % [area_code, exchange, subscriber]
   end
+
+  def name
+    "#{first_name} #{last_name}"
+  end
+
+  def address
+    "#{street}, #{city}, #{state} #{zipcode}"
+  end
 end
