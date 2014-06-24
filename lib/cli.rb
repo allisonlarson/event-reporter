@@ -26,6 +26,21 @@ class CLI
   #
   # end
 
+  def process_input(input)
+    input.downcase.split
+  end
+
+  def format_parameters(parameters)
+
+  end
+
+  def assign_instructions
+    if process_input[0]
+
+  end
+
+
+
   def length
     list.length
   end
