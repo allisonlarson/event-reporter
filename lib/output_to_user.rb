@@ -1,6 +1,10 @@
 class OutputToUser
+  def self.welcome
+    print ("Welcome to Event Reporter\n").center(100)
+  end
+
   def self.prompt
-    "Enter Command: "
+    print ("Enter Command: ")
   end
 
   def self.quit
@@ -43,6 +47,3 @@ class OutputToUser
     puts title = "Help Menu".center(100)
   end
 end
-
-
-p OutputToUser.help

@@ -1,18 +1,32 @@
 require_relative 'list'
 require_relative 'container'
 require 'pry'
+require_relative "output_to_user"
+
 
 class CLI
-  attr_reader :container, :list
+  attr_reader :container, :list, :command, :parameters
 
   def initialize
-    @container = []
-    @list = List.new
+    @container  = []
+    @list       = List.new
+    @command    = ''
+    @parameters = ''
   end
 
   def load(filename)
     @container = Container.load(filename)
   end
+
+  # def run
+  #   OutputToUser.welcome
+  #   command = ''
+  #
+  #   until command = 'quit'
+  #     OutputToUser.prompt
+  #   end
+  #
+  # end
 
   def length
     list.length
@@ -56,7 +70,13 @@ class CLI
     entries = container.find_by_city(city)
     list.append(entries)
   end
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> e518ef8cf033a794e99909f7b3db131cbded0e7f
 end
+
+n = CLI.new
+n.run
