@@ -4,7 +4,7 @@ class List
   attr_accessor :container
 
   def initialize
-    @queue = []
+    @queue = Array.new
   end
 
   def add(entry)
@@ -13,12 +13,6 @@ class List
 
   def append(entries)
     @queue += entries
-  end
-
-  def find(attribute, criteria)
-    @queue = []
-    entry = container.find(attribute, criteria)
-    append(entry)
   end
 
   def clear

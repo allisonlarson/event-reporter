@@ -10,7 +10,6 @@ class ListTest< Minitest::Test
 
   def setup
     @list = List.new
-    @list.container = Container.load('./test_attendees.csv')
   end
 
   def test_it_appends_entries_to_the_queue
@@ -22,20 +21,6 @@ class ListTest< Minitest::Test
     assert_equal 3, list.length - starter_length
   end
 
-  def test_list_clears_when_new_search_is_initiated
-    list.find(:first_name, "Allison")
-    assert_equal 1, list.length
-    list.find(:first_name, "Shannon")
-    assert_equal 2, list.length
-  end
-
-  def test_it_can_find_entry_by_attribute
-    list.find(:first_name, "Allison")
-    list.each do |entry|
-      assert_equal "Allison", entry.first_name
-    end
-  end
-
   def assert_empty(list)
     assert list.empty?, "Expected the list to be empty but instead it is: #{list.inspect}."
   end
@@ -45,7 +30,8 @@ class ListTest< Minitest::Test
   end
 
   def test_it_can_clear_entries
-    list.find(:first_name, "Allison")
+    entry = "allison"
+    list.add(entry)
     assert_not_empty list
     list.clear
     assert_empty list

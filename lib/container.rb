@@ -1,5 +1,6 @@
 require 'pry'
 require 'csv'
+require_relative 'entry'
 
 
 class Container
@@ -17,11 +18,28 @@ class Container
     @entries = entries
   end
 
-  def find(attribute, criteria)
-    entries.select { |entry| entry.send(attribute) == criteria }
-  end
-
   def empty?
     entries.empty?
   end
+
+  def find_by_first_name(name)
+    entries.select { |entry| entry.send(:first_name) == name }
+  end
+
+  def find_by_last_name(name)
+    entries.select { |entry| entry.send(:last_name) == name }
+  end
+
+  def find_by_state(state)
+    entries.select { |entry| entry.send(:state) == state }
+  end
+
+  def find_by_zipcode(zipcode)
+    entries.select { |entry| entry.send(:zipcode) == zipcode }
+  end
+
+  def find_by_city(city)
+    entries.select { |entry| entry.send(:city) == city }
+  end
+
 end

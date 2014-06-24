@@ -7,8 +7,6 @@ class EntryTest<Minitest::Test
 
   def data
     {first_name: "Allison", last_name: "Larson", zipcode: "89009", homephone: "(454) 567-7890"}
-    # {first_Name: "Tim", last_Name: "Proctor", zipcode: "67897", phonenumber: "(123) 456-8908"},
-    # {first_Name: "John", last_Name: "Smith", zipcode: "12345", phonenumber: "(345) 456-7890"}
   end
 
   def test_clean_incoming_data
