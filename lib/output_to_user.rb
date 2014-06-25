@@ -78,12 +78,7 @@ class OutputToUser
   end
 
   def self.help_queue_print
-    puts "Enter "+"queue_print".colorize(:cyan)+" to print all entries in current "+"queue".colorize(:yellow)+". Entries will be organized by order of original file."
-    puts
-  end
-
-  def self.help_queue_print_by
-    puts "Enter "+"queue_print_by <attribute>".colorize(:cyan)+" to print all entries in current "+"queue".colorize(:yellow)+", organized by attribute.
+    puts "Enter "+"queue_print".colorize(:cyan)+" to print all entries in current "+"queue".colorize(:yellow)+". Entries will be organized by order of original file.
     Entries can be organized by "+"first_name".colorize(:cyan)+", "+"last_name".colorize(:cyan)+", "+"city".colorize(:cyan)+", "+"state".colorize(:cyan)+", and "+"zipcode".colorize(:cyan)+"."
     puts
   end
