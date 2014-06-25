@@ -42,9 +42,10 @@ class CLI
   end
 
   def find
-    if container.empty? == nil
+    if container.empty? != nil
       attribute = command[2]
-      criteria = command[3]
+      criteria = command[3..-1].join(' ')
+      binding.pry
       clear
       case attribute
       when 'first_name' then add(container.find_by_first_name(criteria))
@@ -88,7 +89,7 @@ class CLI
     end
  end
 
-  def load(filename = './test_attendees.csv')
+  def load(filename = './event_attendees.csv')
     @filename = filename
     @container = Container.load(@filename)
   end
