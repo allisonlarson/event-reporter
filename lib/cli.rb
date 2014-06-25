@@ -57,7 +57,7 @@ class CLI
   def queue
     instruct = command[1]
     attribute = command[3]
-      if instruct == 'by'
+      if command[2] == 'by'
         print_by(attribute)
       end
     case instruct
