@@ -49,7 +49,7 @@ class OutputToUser
     puts subtitle = "You may enter the following commands:".center(100)
     puts
     puts "load".colorize(:cyan)+" / "+"load <filename>".colorize(:cyan)
-    puts "find by <attribute> <criteria>".colorize(:cyan)
+    puts "find <attribute> <criteria>".colorize(:cyan)
     puts "queue count".colorize(:cyan)+" / "+ "queue clear".colorize(:cyan)+" / "+ "queue print".colorize(:cyan)+" / "+"queue print by <attribute>".colorize(:cyan)+" / "+"queue save to <filename>".colorize(:cyan)
     puts "help <command>".colorize(:cyan)
     puts "quit".colorize(:cyan)
@@ -62,7 +62,7 @@ class OutputToUser
   end
 
   def self.help_find_by
-    puts "Enter "+"find by <attribute> <criteria>".colorize(:cyan)+" to search a previously loaded file, and place founds entries in "+"queue".colorize(:yellow)+".
+    puts "Enter "+"find <attribute> <criteria>".colorize(:cyan)+" to search a previously loaded file, and place founds entries in "+"queue".colorize(:yellow)+".
     Entries can be searched by the attributes "+"first_name".colorize(:cyan)+", "+"last_name".colorize(:cyan)+", "+"city".colorize(:cyan)+", "+"state".colorize(:cyan)+", and "+"zipcode".colorize(:cyan)+". "+"Queue".colorize(:yellow)+" will "+"clear".colorize(:yellow)+" when a new search is initiated."
     puts
   end
