@@ -43,8 +43,8 @@ class CLI
 
   def find
     if container.empty? != nil
-      attribute = command[2]
-      criteria = command[3..-1].join(' ')
+      attribute = command[1]
+      criteria = command[2..-1].join(' ')
       clear
       case attribute
       when 'first_name' then add(container.find_by_first_name(criteria))
