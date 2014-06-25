@@ -42,16 +42,19 @@ class CLI
   end
 
   def find
-    attribute = command[1]
-    criteria = command[3..-1]
-    case attribute
-    when 'first_name' then add(container.find_by_first_name(criteria))
-    when 'last_name'  then add(container.find_by_last_name(criteria))
-    when 'state'      then add(container.find_by_state(criteria))
-    when 'zipcode'    then add(container.find_by_zipcode(criteria))
-    when 'city'       then add(container.find_by_city(criteria))
+    if container.empty? == nil
+      attribute = command[2]
+      criteria = command[3]
+      clear
+      case attribute
+      when 'first_name' then add(container.find_by_first_name(criteria))
+      when 'last_name'  then add(container.find_by_last_name(criteria))
+      when 'state'      then add(container.find_by_state(criteria))
+      when 'zipcode'    then add(container.find_by_zipcode(criteria))
+      when 'city'       then add(container.find_by_city(criteria))
+      end
+      OutputToUser.find
     end
-    OutputToUser.find
   end
 
   def queue
@@ -113,7 +116,27 @@ class CLI
   end
 
   def help
-    puts "something!"
+    if command.length > 1
+      input = command[1]
+      case input
+      when 'find'  then OutputToUser.help_find_by
+      when 'queue' then help_queue
+      when 'help'  then OutputToUser.help_command
+      when 'quit'  then OutputToUser.help_quit
+      end
+    else
+      OutputToUser.help
+    end
+  end
+
+  def help_queue
+    input_command = command[2]
+    case input_command
+    when 'clear' then OutputToUser.help_queue_clear
+    when 'count' then OutputToUser.help_queue_count
+    when 'print' then OutputToUser.help_queue_print
+    when 'save'  then OutputToUser.help_queue_save
+    end
   end
 end
 
