@@ -44,7 +44,7 @@ class List
     info = @queue.each do |entry|
       puts "#{entry[:last_name]}\t#{entry[:first_name]}\t#{entry[:email_address]}\t#{entry[:zipcode]}\t#{entry[:city]}\t#{entry[:state]}\t#{entry[:street]}\t#{entry[:homephone]}"
     end
-    
+
   end
 
   def filter_by(attribute)
@@ -53,4 +53,13 @@ class List
     end
   end
 
+  def save(to_file="high_scores.txt")
+      File.open(to_file, "w") do |file|
+        file.puts 
+        @players.sort.each do |player|
+          file.puts high_score_entry(player)
+        end
+      end
+    end
+  end
 end
