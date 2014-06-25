@@ -7,12 +7,12 @@ class Entry
   def initialize(data)
     @id            = data[0]
     @regdate       = data[:regdate]
-    @first_name    = clean_first_name(data[:first_name])
-    @last_name     = clean_last_name(data[:last_name])
+    @first_name    = data[:first_name].capitalize
+    @last_name     = data[:last_name].capitalize
     @email_address = data[:email_address]
     @street        = data[:street]
-    @city          = clean_city_name(data[:city])
-    @state         = clean_state_name(data[:state])
+    @city          = data[:city]
+    @state         = data[:state]
     @zipcode       = clean_zipcode(data[:zipcode])
     @homephone     = clean_phonenumber(data[:homephone])
   end
@@ -35,21 +35,5 @@ class Entry
 
   def address
     "#{street}, #{city}, #{state.upcase} #{zipcode}"
-  end
-
-  def clean_first_name(first_name)
-    first_name.capitalize
-  end
-
-  def clean_last_name(last_name)
-    last_name.capitalize
-  end
-
-  def clean_city_name(city)
-    city.capitalize
-  end
-
-  def clean_state_name(state)
-    state.capitalize
   end
 end

@@ -93,15 +93,4 @@ class EntryTest<Minitest::Test
     assert_equal "Larson", entry.last_name
   end
 
-  def test_city_is_formatted
-    entry = Entry.new(data)
-
-    assert_equal "Denver", entry.city
-  end
-
-  def test_state_is_formatted
-    entry = Entry.new(data)
-
-    assert_equal "Co", entry.state
-  end
 end
