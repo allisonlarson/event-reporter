@@ -45,7 +45,6 @@ class CLI
     if container.empty? != nil
       attribute = command[2]
       criteria = command[3..-1].join(' ')
-      binding.pry
       clear
       case attribute
       when 'first_name' then add(container.find_by_first_name(criteria))
@@ -113,7 +112,7 @@ class CLI
   end
 
   def save(attribute)
-    list.save
+    list.save(attribute)
   end
 
   def help
