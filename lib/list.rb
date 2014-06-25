@@ -1,4 +1,5 @@
 require 'pry'
+require 'io/console'
 class List
   attr_accessor :queue
 
@@ -38,6 +39,12 @@ class List
     queue.empty?
   end
 
+  def filter_by(attribute)
+    queue.sort_by! do |entry|
+      entry.send(attribute)
+    end
+  end
+
   def prints
     header = "\nLAST NAME".ljust(15) + "FIRST NAME".ljust(15) + "PHONE".ljust(15) + "ZIP".ljust(9) + "CITY".ljust(15) + "STATE".ljust(6) + "ADDRESS".ljust(30) + "EMAIL"
     puts header
@@ -47,12 +54,6 @@ class List
       print  "#{entry.send(:state)}".ljust(6) + "#{entry.send(:street)}".ljust(30) + "#{entry.send(:email_address)}"
     end
     puts
-  end
-
-  def filter_by(attribute)
-    queue.sort_by! do |entry|
-      entry.send(attribute)
-    end
   end
 
   def save(to_file="queue_save.csv")

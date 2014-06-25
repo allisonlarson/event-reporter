@@ -20,18 +20,6 @@ class OutputToUser
     print "Successfully loaded '#{filename}'\n"
   end
 
-  def self.load_error
-    "Sorry. That file could not be loaded."
-  end
-
-  def self.bad_attribute
-    "Sorry. Type 'help' for a menu of attributes and commands."
-  end
-
-  def self.criteria_empty
-    "Sorry. Couldn't find by that criteria. Type 'help' for a menu of attributes and commands."
-  end
-
   def self.count
     print "Results in queue:     "
   end

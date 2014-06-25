@@ -41,6 +41,21 @@ class CLI
       end
   end
 
+  def load_parse
+    if command.length > 1
+      file = command[1]
+      load(file)
+    else
+      load
+    end
+ end
+
+  def load(filename = './event_attendees.csv')
+    @filename = filename
+    OutputToUser.loaded(@filename)
+    @container = Container.load(@filename)
+  end
+
   def find
     if container.empty? == false
       attribute = command[1]
@@ -71,51 +86,6 @@ class CLI
     end
   end
 
-  def prints
-    list.prints
-  end
-
-  def sort(attribute)
-    list.filter_by(attribute)
-  end
-
-  def load_parse
-    if command.length > 1
-      file = command[1]
-      load(file)
-    else
-      load
-    end
- end
-
-  def load(filename = './event_attendees.csv')
-    @filename = filename
-    OutputToUser.loaded(@filename)
-    @container = Container.load(@filename)
-  end
-
-  def length
-    OutputToUser.count
-    puts list.length
-  end
-
-  def each(&block)
-    list.each(&block)
-  end
-
-  def clear
-    OutputToUser.clear
-    list.clear
-  end
-
-  def add(entry)
-    list.adds_entrys(entry)
-  end
-
-  def save(attribute)
-    list.save(attribute)
-  end
-
   def help
     if command.length > 1
       input = command[1]
@@ -139,4 +109,35 @@ class CLI
     when 'save'  then OutputToUser.help_queue_save
     end
   end
+
+  def prints
+    list.prints
+  end
+
+  def save(attribute)
+    list.save(attribute)
+  end
+
+  def sort(attribute)
+    list.filter_by(attribute)
+  end
+
+  def length
+    OutputToUser.count
+    puts list.length
+  end
+
+  def each(&block)
+    list.each(&block)
+  end
+
+  def clear
+    OutputToUser.clear
+    list.clear
+  end
+
+  def add(entry)
+    list.adds_entrys(entry)
+  end
+
 end

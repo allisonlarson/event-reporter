@@ -11,7 +11,7 @@ class ListTest< Minitest::Test
   def setup
     @list = List.new
   end
-
+  
   def assert_empty(list)
     assert list.empty?, "Expected the list to be empty but instead it is: #{list.inspect}."
   end
@@ -62,7 +62,8 @@ class ListTest< Minitest::Test
 
     list.adds_entrys([e1, e2, e3])
     expectation = [e2, e1, e3]
-    assert_equal expectation, list.filter_by(:zipcode)
+    list.filter_by(:zipcode)
+    assert_equal expectation, list.queue
   end
 
   def test_it_will_sort_by_first_name_after_last_name
