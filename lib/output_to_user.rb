@@ -98,11 +98,11 @@ class OutputToUser
     puts
   end
 end
-OutputToUser.help
-OutputToUser.help_find_by
-OutputToUser.help_queue_count
-OutputToUser.help_queue_clear
-OutputToUser.help_queue_print
-OutputToUser.help_queue_print_by
-OutputToUser.help_command
-OutputToUser.help_quit
+# OutputToUser.help
+# OutputToUser.help_find_by
+# OutputToUser.help_queue_count
+# OutputToUser.help_queue_clear
+# OutputToUser.help_queue_print
+# OutputToUser.help_queue_print_by
+# OutputToUser.help_command
+# OutputToUser.help_quit

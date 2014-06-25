@@ -42,17 +42,19 @@ class CLI
   end
 
   def find
-    attribute = command[2]
-    criteria = command[3]
-    clear
-    case attribute
-    when 'first_name' then add(container.find_by_first_name(criteria))
-    when 'last_name'  then add(container.find_by_last_name(criteria))
-    when 'state'      then add(container.find_by_state(criteria))
-    when 'zipcode'    then add(container.find_by_zipcode(criteria))
-    when 'city'       then add(container.find_by_city(criteria))
+    if container.empty? == nil
+      attribute = command[2]
+      criteria = command[3]
+      clear
+      case attribute
+      when 'first_name' then add(container.find_by_first_name(criteria))
+      when 'last_name'  then add(container.find_by_last_name(criteria))
+      when 'state'      then add(container.find_by_state(criteria))
+      when 'zipcode'    then add(container.find_by_zipcode(criteria))
+      when 'city'       then add(container.find_by_city(criteria))
+      end
+      OutputToUser.find
     end
-    OutputToUser.find
   end
 
   def queue
