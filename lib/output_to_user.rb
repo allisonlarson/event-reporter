@@ -16,8 +16,8 @@ class OutputToUser
     "Unrecognized input. Type 'help' for a menu of attributes and commands."
   end
 
-  def self.loaded
-    "Successfully loaded file."
+  def self.loaded(filename)
+    print "Successfully loaded '#{filename}'\n"
   end
 
   def self.load_error

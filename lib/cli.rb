@@ -90,6 +90,7 @@ class CLI
 
   def load(filename = './event_attendees.csv')
     @filename = filename
+    OutputToUser.loaded(@filename)
     @container = Container.load(@filename)
   end
 
