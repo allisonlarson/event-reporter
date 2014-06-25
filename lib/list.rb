@@ -51,7 +51,7 @@ class List
   end
 
   def filter_by(attribute)
-    queue.sort_by do |entry|
+    queue.sort_by! do |entry|
       entry.send(attribute)
     end
   end

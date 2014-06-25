@@ -42,7 +42,7 @@ class CLI
   end
 
   def find
-    if container.empty? != nil
+    if container.empty? == false
       attribute = command[1]
       criteria = command[2..-1].join(' ')
       clear

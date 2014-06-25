@@ -21,6 +21,7 @@ class Container
   def empty?
     entries.empty?
   end
+  
 
   def find_by_first_name(name)
     entries.select { |entry| entry.send(:first_name) == name }
