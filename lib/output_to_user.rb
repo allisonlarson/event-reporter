@@ -8,7 +8,7 @@ class OutputToUser
   end
 
   def self.quit
-    "Exiting the Event Reporter. Goodbye!"
+    print "Exiting the Event Reporter. Goodbye!\n"
   end
 
   def self.invalid
@@ -32,15 +32,15 @@ class OutputToUser
   end
 
   def self.count
-    "Results in queue:     "
+    print "Results in queue:     "
   end
 
   def self.clear
-    "Queue has been cleared."
+    print "Queue has been cleared.\n"
   end
 
   def self.find
-    "Your search has been placed in queue."
+    print "Your search has been placed in queue.\n"
   end
 
   def self.help

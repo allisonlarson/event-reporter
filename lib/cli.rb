@@ -24,8 +24,10 @@ class CLI
     until input == 'quit'
       @command = process_input(input)
       assigns_instructions
+      OutputToUser.prompt
       input = gets.strip
     end
+    OutputToUser.quit
   end
 
   def assigns_instructions
@@ -49,14 +51,15 @@ class CLI
     when 'zipcode'    then add(container.find_by_zipcode(criteria))
     when 'city'       then add(container.find_by_city(criteria))
     end
+    OutputToUser.find
   end
 
   def queue
     instruct = command[1]
     attribute = command[3]
-    if instruct == 'by'
-      print_by(attribute)
-    end
+      if instruct == 'by'
+        print_by(attribute)
+      end
     case instruct
     when 'count'    then length
     when 'clear'    then clear
@@ -74,21 +77,21 @@ class CLI
   end
 
   def load_parse
-    if command.length >= 1
+    if command.length > 1
       file = command[1]
       load(file)
     else
       load
     end
-  end
+ end
 
   def load(filename = './test_attendees.csv')
     @filename = filename
     @container = Container.load(@filename)
   end
-# binding.pry
 
   def length
+    OutputToUser.count
     puts list.length
   end
 
@@ -97,6 +100,7 @@ class CLI
   end
 
   def clear
+    OutputToUser.clear
     list.clear
   end
 
@@ -109,6 +113,6 @@ class CLI
   end
 end
 
-end
+
 t = CLI.new
 t.run

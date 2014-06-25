@@ -7,11 +7,11 @@ class EntryTest<Minitest::Test
 
   def data
     {
-    first_name: "Allison",
-    last_name: "Larson",
+    first_name: "ALLison",
+    last_name: "LARson",
     email_address: 'allie@gmail.com',
     street: '123 Main',
-    city: 'Denver',
+    city: 'DEnver',
     state: 'CO',
     zipcode: "89009",
     homephone: "(454) 567-7890"}
@@ -79,5 +79,29 @@ class EntryTest<Minitest::Test
     entry = Entry.new(data)
 
     assert_equal nil, entry.regdate
+  end
+
+  def test_first_name_is_formatted
+    entry = Entry.new(data)
+
+    assert_equal "Allison", entry.first_name
+  end
+
+  def test_last_name_is_formatted
+    entry = Entry.new(data)
+
+    assert_equal "Larson", entry.last_name
+  end
+
+  def test_city_is_formatted
+    entry = Entry.new(data)
+
+    assert_equal "Denver", entry.city
+  end
+
+  def test_state_is_formatted
+    entry = Entry.new(data)
+
+    assert_equal "Co", entry.state
   end
 end
