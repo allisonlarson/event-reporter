@@ -4,7 +4,7 @@ class OutputToUser
   end
 
   def self.prompt
-    print ("Enter Command: ")
+    print ("Enter Command: ").ljust(15)
   end
 
   def self.quit

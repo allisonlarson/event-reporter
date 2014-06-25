@@ -12,7 +12,7 @@ class Entry
     @email_address = data[:email_address]
     @street        = data[:street]
     @city          = data[:city]
-    @state         = data[:state]
+    @state         = data[:state].upcase
     @zipcode       = clean_zipcode(data[:zipcode])
     @homephone     = clean_phonenumber(data[:homephone])
   end

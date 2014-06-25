@@ -3,7 +3,7 @@ class List
   attr_accessor :queue
 
   def initialize
-    @queue = Array.new
+    @queue ||= Array.new
   end
 
   def adds_entrys(entry)
@@ -39,17 +39,20 @@ class List
   end
 
   def prints
-    header = "\tLAST NAME\tFIRST NAME\tEMAIL\tZIP\tCITY\tSTATE\tADDRESS\tPHONE\n\n"
-    print header.center(50)
-    info = @queue.each do |entry|
-      puts "#{entry[:last_name]}\t#{entry[:first_name]}\t#{entry[:email_address]}\t#{entry[:zipcode]}\t#{entry[:city]}\t#{entry[:state]}\t#{entry[:street]}\t#{entry[:homephone]}"
+    header = "LAST NAME".ljust(15) + "FIRST NAME".ljust(15) + "PHONE".ljust(15) + "ZIP".ljust(9) + "CITY".ljust(15) + "STATE".ljust(6) + "ADDRESS".ljust(30) + "EMAIL"
+    puts
+    puts header
+    queue.each do |entry|
+      puts
+      print "#{entry.send(:last_name)}".ljust(15) + "#{entry.send(:first_name)}".ljust(15) + "#{entry.send(:homephone)}".ljust(15) + "#{entry.send(:zipcode)}".ljust(9) + "#{entry.send(:city)}".ljust(15)
+      print  "#{entry.send(:state)}".ljust(6) + "#{entry.send(:street)}".ljust(30) + "#{entry.send(:email_address)}"
     end
-    
+    puts
   end
 
   def filter_by(attribute)
-    queue.sort_by! do |entry|
-      entry[attribute]
+    queue.sort_by do |entry|
+      entry.send(attribute)
     end
   end
 
