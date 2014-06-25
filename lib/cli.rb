@@ -61,7 +61,7 @@ class CLI
     instruct = command[1]
     attribute = command[3]
       if command[2] == 'by'
-        print_by(attribute)
+        sort(attribute)
       end
     case instruct
     when 'count'    then length
@@ -75,7 +75,7 @@ class CLI
     list.prints
   end
 
-  def print_by(attribute)
+  def sort(attribute)
     list.filter_by(attribute)
   end
 
