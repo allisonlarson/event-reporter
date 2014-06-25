@@ -56,13 +56,9 @@ class List
     end
   end
 
-  def save(to_file="high_scores.txt")
-      File.open(to_file, "w") do |file|
-        file.puts
-        @players.sort.each do |player|
-          file.puts high_score_entry(player)
-        end
-      end
+  def save(to_file="queue_save.csv")
+    File.open(to_file, "w") do |file|
+      file.puts prints
     end
   end
 end

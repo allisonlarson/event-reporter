@@ -42,9 +42,8 @@ class CLI
   end
 
   def find
-    attribute = command[2]
-    criteria = command[3]
-    clear
+    attribute = command[1]
+    criteria = command[3..-1]
     case attribute
     when 'first_name' then add(container.find_by_first_name(criteria))
     when 'last_name'  then add(container.find_by_last_name(criteria))
@@ -65,6 +64,7 @@ class CLI
     when 'count'    then length
     when 'clear'    then clear
     when 'print'    then prints
+    when 'save'     then save(attribute)
     end
   end
 
@@ -106,6 +106,10 @@ class CLI
 
   def add(entry)
     list.adds_entrys(entry)
+  end
+
+  def save(attribute)
+    list.save
   end
 
   def help
