@@ -42,7 +42,6 @@ class CLI
   end
 
   def find
-
     attribute = command[2]
     criteria = command[3]
     clear
