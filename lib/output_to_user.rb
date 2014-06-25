@@ -50,7 +50,7 @@ class OutputToUser
     puts
     puts "load".colorize(:cyan)+" / "+"load <filename>".colorize(:cyan)
     puts "find by <attribute> <criteria>".colorize(:cyan)
-    puts "queue count".colorize(:cyan)+" / "+ "queue clear".colorize(:cyan)+" / "+ "queue print".colorize(:cyan)+" / "+"queue print by <attribute>".colorize(:cyan)
+    puts "queue count".colorize(:cyan)+" / "+ "queue clear".colorize(:cyan)+" / "+ "queue print".colorize(:cyan)+" / "+"queue print by <attribute>".colorize(:cyan)+" / "+"queue save to <filename>".colorize(:cyan)
     puts "help <command>".colorize(:cyan)
     puts "quit".colorize(:cyan)
     puts
@@ -94,15 +94,20 @@ class OutputToUser
   end
 
   def self.help_quit
-    puts "enter "+"quit".colorize(:cyan)+" at any time to quit program. Your mileage may vary."
+    puts "Enter "+"quit".colorize(:cyan)+" at any time to quit program. Your mileage may vary."
     puts
   end
+
+  def self.help_queue_save
+    puts "Enter "+"queue save to <filename>".colorize(:cyan)+" to save contents of "+"queue".colorize(:yellow)+" to new file."
+  end
 end
-# OutputToUser.help
-# OutputToUser.help_find_by
-# OutputToUser.help_queue_count
-# OutputToUser.help_queue_clear
-# OutputToUser.help_queue_print
-# OutputToUser.help_queue_print_by
-# OutputToUser.help_command
-# OutputToUser.help_quit
+  # OutputToUser.help
+  # OutputToUser.help_find_by
+  # OutputToUser.help_queue_count
+  # OutputToUser.help_queue_clear
+  # OutputToUser.help_queue_print
+  # OutputToUser.help_queue_print_by
+  # OutputToUser.help_command
+  # OutputToUser.help_quit
+  # OutputToUser.help_queue_save
