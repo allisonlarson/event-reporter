@@ -140,7 +140,3 @@ class CLI
     end
   end
 end
-
-
-t = CLI.new
-t.run
