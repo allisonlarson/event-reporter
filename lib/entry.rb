@@ -11,7 +11,7 @@ class Entry
     @last_name     = data[:last_name].capitalize
     @email_address = data[:email_address]
     @street        = data[:street]
-    @city          = data[:city]
+    @city          = clean_city(data[:city])
     @state         = data[:state]
     @zipcode       = clean_zipcode(data[:zipcode])
     @homephone     = clean_phonenumber(data[:homephone])
@@ -31,6 +31,22 @@ class Entry
 
   def name
     "#{first_name} #{last_name}"
+  end
+
+  def clean_city(cities)
+    if cities != nil
+      cities.split.map {|word| word.capitalize}.join(' ')
+    else
+      cities
+    end
+  end
+
+  def clean_state(state)
+    if state != nil
+      state.upcase
+    else
+      state
+    end
   end
 
   def address
