@@ -1,9 +1,8 @@
-require 'pry'
 require 'csv'
 require_relative 'entry'
 
-
 class Container
+
   def self.load(file)
     data = CSV.open(file, headers: true, header_converters: :symbol)
     rows = data.map do |row|
@@ -41,5 +40,5 @@ class Container
   def find_by_city(city)
     entries.select { |entry| entry.send(:city) == city }
   end
-
+  
 end

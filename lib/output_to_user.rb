@@ -1,7 +1,10 @@
 require 'colorize'
 class OutputToUser
+
   def self.welcome
+    puts
     print ("Welcome to Event Reporter\n").center(100)
+    puts
   end
 
   def self.prompt
@@ -10,10 +13,6 @@ class OutputToUser
 
   def self.quit
     print "Exiting the Event Reporter. Goodbye!\n"
-  end
-
-  def self.invalid
-    "Unrecognized input. Type 'help' for a menu of attributes and commands."
   end
 
   def self.loaded(filename)
@@ -84,4 +83,5 @@ class OutputToUser
   def self.help_queue_save
     puts "Enter "+"queue save to <filename>".colorize(:cyan)+" to save contents of "+"queue".colorize(:yellow)+" to new file."
   end
+
 end
