@@ -1,6 +1,7 @@
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/cli'
+require './lib/container'
 
 class CLITest < Minitest::Test
   attr_reader :cli
@@ -16,9 +17,8 @@ class CLITest < Minitest::Test
   end
 
   def test_it_finds_by_first_name
-    skip
     cli.load('./test_attendees.csv')
-    cli.find_by_first_name("Allison")
+    cli.add(container.find_by_first_name("Allison"))
     assert_equal 1 , cli.length
     cli.each do |entry|
       assert_equal "Allison", entry.first_name

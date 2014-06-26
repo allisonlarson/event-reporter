@@ -7,8 +7,8 @@ class Entry
   def initialize(data)
     @id            = data[0]
     @regdate       = data[:regdate]
-    @first_name    = data[:first_name].capitalize
-    @last_name     = data[:last_name].capitalize
+    @first_name    = clean_first_name(data[:first_name])
+    @last_name     = clean_last_name(data[:last_name])
     @email_address = data[:email_address]
     @street        = data[:street]
     @city          = clean_city(data[:city])
@@ -22,15 +22,15 @@ class Entry
   end
 
   def clean_phonenumber(phone_number)
-    digits = phone_number.scan(/\d/).join
-    area_code  = digits[0..2]
-    exchange   = digits[3..5]
-    subscriber = digits[-4..-1]
-    "(%s) %s-%s" % [area_code, exchange, subscriber]
-  end
-
-  def name
-    "#{first_name} #{last_name}"
+    if phone_number != nil
+      digits = phone_number.scan(/\d/).join
+      area_code  = digits[0..2]
+      exchange   = digits[3..5]
+      subscriber = digits[-4..-1]
+      "(%s) %s-%s" % [area_code, exchange, subscriber]
+    else
+      phone_number
+    end
   end
 
   def clean_city(cities)
@@ -49,7 +49,20 @@ class Entry
     end
   end
 
-  def address
-    "#{street}, #{city}, #{state.upcase} #{zipcode}"
+  def clean_first_name(name)
+    if name != nil
+      name.capitalize
+    else
+      name
+    end
   end
+
+  def clean_last_name(name)
+    if name != nil
+      name.capitalize
+    else
+      name
+    end
+  end
+
 end
