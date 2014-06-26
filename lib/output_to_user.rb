@@ -3,7 +3,7 @@ class OutputToUser
 
   def self.welcome
     puts
-    print ("Welcome to Event Reporter\n").center(100)
+    print ("Welcome to Event Reporter\n").colorize(:yellow).center(100)
     puts
   end
 
@@ -12,23 +12,23 @@ class OutputToUser
   end
 
   def self.quit
-    print "Exiting the Event Reporter. Goodbye!\n"
+    print "Exiting the Event Reporter. "+"Goodbye".colorize(:yellow)+"!\n"
   end
 
   def self.loaded(filename)
-    print "Successfully loaded '#{filename}'\n"
+    print "Successfully loaded "+ "#{filename}\n".colorize(:cyan)
   end
 
   def self.count(number)
-    print "Results in queue:     #{number}\n"
+    print "Results in "+"queue".colorize(:yellow)+":     "+"#{number}\n".colorize(:cyan)
   end
 
   def self.clear
-    print "Queue has been cleared.\n"
+    print "Queue".colorize(:yellow)+" has been "+"cleared".colorize(:yellow)+".\n"
   end
 
   def self.find
-    print "Your search has been placed in queue.\n"
+    print "Your search has been placed in "+"queue".colorize(:yellow)+".\n"
   end
 
   def self.help
