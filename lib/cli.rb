@@ -5,7 +5,7 @@ require_relative "output_to_user"
 
 
 class CLI
-  attr_reader :container, :list, :command
+  attr_reader :list, :command, :container
 
   def initialize
     @container  = []
@@ -52,7 +52,7 @@ class CLI
 
   def load(filename = './event_attendees.csv')
     @filename = filename
-    OutputToUser.loaded(@filename)
+    # OutputToUser.loaded(@filename)
     @container = Container.load(@filename)
   end
 
@@ -123,8 +123,10 @@ class CLI
   end
 
   def length
-    OutputToUser.count
-    puts list.length
+    number = list.length
+    # OutputToUser.count(number)
+    number
+
   end
 
   def each(&block)

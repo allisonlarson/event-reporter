@@ -63,18 +63,6 @@ class EntryTest<Minitest::Test
     assert_equal "89009", entry.zipcode
   end
 
-  def test_full_name
-    entry = Entry.new(data)
-
-    assert_equal "Allison Larson", entry.name
-  end
-
-  def test_full_address
-    entry = Entry.new(data)
-
-    assert_equal "123 Main, Denver, CO 89009", entry.address
-  end
-
   def test_entry_missing_information
     entry = Entry.new(data)
 

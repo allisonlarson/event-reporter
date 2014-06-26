@@ -20,8 +20,8 @@ class OutputToUser
     print "Successfully loaded '#{filename}'\n"
   end
 
-  def self.count
-    print "Results in queue:     "
+  def self.count(number)
+    print "Results in queue:     #{number}\n"
   end
 
   def self.clear
