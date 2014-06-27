@@ -2,7 +2,7 @@ require 'pry'
 
 class Entry
 
-  attr_reader :regdate, :first_name, :last_name, :email_address, :street, :city, :state, :zipcode, :homephone
+  attr_accessor :regdate, :first_name, :last_name, :email_address, :street, :city, :state, :zipcode, :homephone
 
   def initialize(data)
     @id            = data[0]

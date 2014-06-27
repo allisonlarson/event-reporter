@@ -64,8 +64,8 @@ class ListTest< Minitest::Test
     e3 = Entry.new(entry3)
     list.adds_entrys([e1, e2, e3])
     expectation = [e2, e1, e3]
-    list.filter_by(:zipcode)
-    assert_equal expectation, list.queue
+    sorted_list = list.filter_by(:zipcode)
+    assert_equal expectation, sorted_list.queue
   end
 
 end

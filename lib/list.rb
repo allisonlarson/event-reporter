@@ -3,8 +3,8 @@ require 'io/console'
 class List
   attr_accessor :queue
 
-  def initialize
-    @queue ||= Array.new
+  def initialize(elements = nil)
+    @queue = elements || Array.new
   end
 
   def adds_entrys(entry)
@@ -40,9 +40,10 @@ class List
   end
 
   def filter_by(attribute)
-    queue.sort_by! do |entry|
+    sorted_list = queue.sort_by do |entry|
       entry.send(attribute)
     end
+    List.new(sorted_list)
   end
 
   def prints
